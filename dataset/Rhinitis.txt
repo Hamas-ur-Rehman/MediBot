@@ -1,0 +1,11 @@
+Disease Name: RHINITIS
+Overview: Rhinitis is the inflammation of the mucous membrane lining the nose, resulting in symptoms such as nasal congestion, sneezing, runny nose, itching, and postnasal drip.
+Symptoms: Common symptoms include nasal congestion, sneezing, runny nose (rhinorrhea), itching of the nose, eyes, or throat, and postnasal drip.
+Causes: Rhinitis can be caused by allergic reactions to airborne substances (allergic rhinitis), non-allergic triggers such as environmental irritants or changes in temperature and humidity (non-allergic rhinitis), or infections such as the common cold.
+Risk Factors: Risk factors include a family history of allergies, exposure to environmental triggers such as pollen, dust mites, pet dander, or air pollution, and having a weakened immune system.
+Complications: Complications of rhinitis may include sinusitis, ear infections, disrupted sleep, fatigue, impaired concentration, and exacerbation of asthma symptoms in individuals with asthma.
+Preventions: Preventive measures include avoiding known allergens, keeping indoor environments clean and well-ventilated, using air purifiers or filters, practicing good hygiene, and seeking treatment for underlying conditions such as allergies or sinus infections.
+Prescriptions/dosage remedies: Treatment may involve over-the-counter or prescription medications such as antihistamines, decongestants, nasal corticosteroids, nasal saline sprays, leukotriene modifiers, allergy shots (immunotherapy), or in severe cases, oral corticosteroids.
+Warning: Seek medical advice if symptoms persist or worsen, or if there are signs of complications such as severe nasal congestion, facial pain or pressure, persistent fever, or difficulty breathing.
+
+Disclaimer: The information provided may not be accurate. Medibot is not liable for any inaccuracies.
