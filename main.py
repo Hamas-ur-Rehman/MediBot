@@ -1,32 +1,53 @@
 from chromadb_service import retriver
 from prompt import PROMPT
 from openai_service import AskAI
+from mongodb_service import *
+import datetime
 
-def MediBot():
-    question = input("Enter your question: ")
+def MediBot(userid:str,question:str):
+    insert_chat(
+        userid=userid,
+        role="user",
+        msg=question,
+        created_at=datetime.datetime.now()
+    )
     docs = retriver(question)
     DOC_PROMPT = 'This is from where you can possibly get information about the user question'
     for doc in docs:
         DOC_PROMPT += "\n" + doc
-
     messages = [
         {
             "role": "system",
             "content": PROMPT
         },
         {
-            "role": "user",
-            "content": question
-        },
-        {
             "role": "system",
             "content": DOC_PROMPT
-        }
+        },
     ]
 
-    response = AskAI(messages)
+    try:
+       chats = fetch_chats(userid)
+       for chat in chats:
+            messages.append(
+            {
+                "role":chat['role'],
+                "content":chat["msg"]
+            }
+            )
+    except Exception as e:
+        pass
+    
+    messages.append({"role":"user","content":question})
 
+    response = AskAI(messages)
+    insert_chat(
+        userid=userid,
+        role="assistant",
+        msg=response,
+        created_at=datetime.datetime.now()
+    )
     print(response,"\n")
 
     
-MediBot()
+MediBot("afaq@gmail.com","can you remember my name")

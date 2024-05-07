@@ -4,3 +4,4 @@ chromadb==0.4.24
 python-dotenv==1.0.1
 langchain_openai==0.0.2
 langchain-community==0.0.11
+pymongo==4.6.3
