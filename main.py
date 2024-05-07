@@ -1,53 +1,26 @@
-from chromadb_service import retriver
-from prompt import PROMPT
-from openai_service import AskAI
-from mongodb_service import *
-import datetime
+from fastapi import FastAPI, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from medibot_service import MediBot
 
-def MediBot(userid:str,question:str):
-    insert_chat(
-        userid=userid,
-        role="user",
-        msg=question,
-        created_at=datetime.datetime.now()
-    )
-    docs = retriver(question)
-    DOC_PROMPT = 'This is from where you can possibly get information about the user question'
-    for doc in docs:
-        DOC_PROMPT += "\n" + doc
-    messages = [
-        {
-            "role": "system",
-            "content": PROMPT
-        },
-        {
-            "role": "system",
-            "content": DOC_PROMPT
-        },
-    ]
+app = FastAPI()
 
+# Enable CORS (Cross-Origin Resource Sharing)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for demonstration purposes
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
+
+@app.post("/ask")
+def ask(input_data:dict = {
+    "userid": "afaq@gmail.com",
+    "question": "Hi I got a nose problem"
+   }):
     try:
-       chats = fetch_chats(userid)
-       for chat in chats:
-            messages.append(
-            {
-                "role":chat['role'],
-                "content":chat["msg"]
-            }
-            )
+       response = MediBot(userid=input_data.get('userid'),question=input_data.get("question"))
+       return {"response":response}
     except Exception as e:
-        pass
-    
-    messages.append({"role":"user","content":question})
-
-    response = AskAI(messages)
-    insert_chat(
-        userid=userid,
-        role="assistant",
-        msg=response,
-        created_at=datetime.datetime.now()
-    )
-    print(response,"\n")
-
-    
-MediBot("afaq@gmail.com","can you remember my name")
+        raise HTTPException(status_code=500, detail=str(e))
