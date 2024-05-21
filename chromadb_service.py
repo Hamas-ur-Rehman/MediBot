@@ -18,7 +18,7 @@ def loader():
     DATASET = []
     items = os.listdir(root_path)
     for i in items:
-        with open(f"{root_path}/{i}",'r') as f:
+        with open(f"{root_path}/{i}",'r', encoding='utf-8') as f:
             DATASET.append(f.read())
     
     Chroma.add_texts(vectorstore, DATASET)
