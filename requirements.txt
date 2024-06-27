@@ -7,3 +7,4 @@ langchain-community==0.0.11
 pymongo==4.6.3
 fastapi==0.110.1
 uvicorn==0.29.0
+gunicorn==22.0.0
